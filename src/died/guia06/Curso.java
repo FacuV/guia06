@@ -1,9 +1,11 @@
 package died.guia06;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import died.guia06.util.Registro;
+
+import javax.imageio.IIOException;
 
 /**
  * Clase que representa un curso. Un curso se identifica por su ID y por su nombre y ciclo lectivo.
@@ -22,7 +24,6 @@ public class Curso {
 	private List<Alumno> inscriptos;
 	private Integer creditos;
 	private Integer creditosRequeridos;
-	
 	private Registro log;
 	
 	public Curso() {
@@ -46,16 +47,24 @@ public class Curso {
 	 * @return
 	 */
 	public Boolean inscribir(Alumno a) {
-		log.registrar(this, "inscribir ",a.toString());
+
+		try {log.registrar(this, "inscribir ", a.toString());
+		}catch(IOException ex){
+			System.err.println("An IOException was caught: " + ex.getMessage());
+			ex.printStackTrace();
+		}
 		return false;
 	}
-	
-	
 	/**
 	 * imprime los inscriptos en orden alfabetico
 	 */
 	public void imprimirInscriptos() {
-		log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+
+		try{log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+		}catch(IOException ex){
+			System.err.println("An IOException was caught: " + ex.getMessage());
+			ex.printStackTrace();
+		}
 	}
 
 
