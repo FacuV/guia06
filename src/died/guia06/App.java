@@ -1,11 +1,16 @@
 package died.guia06;
 
+import excepciones.ExceptionAlumnoYaEstaEnCurso;
+import excepciones.ExceptionCursosPorCicloLectivoCompleto;
+import excepciones.ExceptionNoPoseeCreditos;
+import excepciones.ExceptionSinCupo;
+
 import java.lang.reflect.Array;
 import java.util.List;
 
 public class App {
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		Alumno[] alumnos = {
 		new Alumno("Juan",001),
 		new Alumno("Jose",002),
@@ -25,7 +30,23 @@ public class App {
 		System.out.println("Inscribiendo alumnos a los prieros 4 cursos");
 		for(int i=0;i < 4;i++){
 			for(Alumno alumno:alumnos){
-				cursos[i].inscribir(alumno);
+				try{
+					cursos[i].inscribirAlumno(alumno);
+				}catch(ExceptionAlumnoYaEstaEnCurso e){
+					e.printStackTrace();
+				}catch(ExceptionNoPoseeCreditos e){
+
+					e.printStackTrace();
+				}catch(ExceptionSinCupo e){
+
+					e.printStackTrace();
+				}catch(ExceptionCursosPorCicloLectivoCompleto e){
+
+					e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
+
+				}
 			}
 		}
 		//Jose y Juan aprueban a los primeros 3 cursos y Facundo y Eira solo en el 4to
@@ -40,11 +61,27 @@ public class App {
 		for(Alumno alumno:alumnos){
 			System.out.println( "Creditos de " +alumno.getNombre()+" "+ alumno.creditosObtenidos());
 		}
-		//Jose y Juan se inscriben a los primeros 3 cursos y Facundo y Eira en ninguno
+		//Jose y Juan se inscriben a los cursos 5,6 y 7 y Facundo y Eira en ninguno
 		System.out.println("Se intenta inscribir a los alumnos a los siguientes 4 cursos");
 		for(int i=0;i < 4;i++){
 			for(Alumno alumno:alumnos){
-				cursos[i+4].inscribir(alumno);
+				try{
+					cursos[i].inscribirAlumno(alumno);
+				}catch(ExceptionAlumnoYaEstaEnCurso e){
+					e.printStackTrace();
+				}catch(ExceptionNoPoseeCreditos e){
+
+					e.printStackTrace();
+				}catch(ExceptionSinCupo e){
+
+					e.printStackTrace();
+				}catch(ExceptionCursosPorCicloLectivoCompleto e){
+
+					e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
+
+				}
 			}
 		}
 	}
