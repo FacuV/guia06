@@ -19,7 +19,7 @@ public class Alumno implements Comparable<Alumno> {
 		aprobados = new ArrayList<>();
 	}
 
-	public Alumno(String nombre, int nroLibreta) {
+	public Alumno(String nombre, int nroLibreta){
 		this.nombre = nombre;
 		this.nroLibreta = nroLibreta;
 		cursando = new ArrayList<>();
