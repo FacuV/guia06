@@ -72,7 +72,7 @@ public class Alumno implements Comparable<Alumno> {
 			aprobados.add(c);
 			cursando.remove(c);
 		} else {
-			System.out.println("El alumno " + this.nombre + "no esta cursando el curso" + c.getNombre());
+			System.out.println("El alumno " + this.nombre + " no esta cursando el curso " + c.getNombre());
 		}
 	}
 

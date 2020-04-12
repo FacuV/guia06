@@ -65,10 +65,16 @@ public class Curso {
 	 * @return
 	 */
 	public Boolean inscribir(Alumno a) {
-		if(!inscriptos.contains(a) && a.creditosObtenidos() == creditosRequeridos && inscriptos.size()<cupo && a.cantCursandoEnCicloLectivo(cicloLectivo) < 3){
-			inscriptos.add(a);
-			a.inscripcionAceptada(this);
-		}else{return false;}
+		if(!inscriptos.contains(a)){
+			if(a.creditosObtenidos() >= creditosRequeridos) {
+				if(inscriptos.size()<cupo) {
+					if(a.cantCursandoEnCicloLectivo(cicloLectivo) < 3) {
+						inscriptos.add(a);
+						a.inscripcionAceptada(this);
+					}else{System.out.println("El alumno no puede estar en mas de 3 cursos por ciclo lectivo");return false;}
+				}else{System.out.println("El curso ya no tiene cupo");return false;}
+			}else{System.out.println("El alumno no posee los creditos requeridos");return false;}
+		}else{System.out.println("El alumno ya esta en el curso");return false;}
 
 		try {log.registrar(this, "inscribir ", a.toString());
 		}catch(IOException ex){
