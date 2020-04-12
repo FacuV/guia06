@@ -27,7 +27,7 @@ class AlumnoTest {
 	}
 
 	@Test
-	void testAprobar() {
+	public void testAprobar() {
 		ArrayList<Curso> list = new ArrayList<>();
 		list.add(cursar);
 		alumno1.setCursando(list);

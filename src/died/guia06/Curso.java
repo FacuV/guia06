@@ -45,9 +45,11 @@ public class Curso {
 
 	public int getCreditos(){return creditos;}
 
-	public String getNombre() {return nombre;}
+	public String getNombre(){return nombre;}
 
-	public Integer getCicloLectivo() {return cicloLectivo;}
+	public Integer getCicloLectivo(){return cicloLectivo;}
+
+	public List<Alumno> getInscriptos(){return inscriptos;}
 
 	/**
 	 * Este método, verifica si el alumno se puede inscribir y si es así lo agrega al curso,
@@ -79,7 +81,6 @@ public class Curso {
 	 * imprime los inscriptos en orden alfabetico
 	 */
 	public void imprimirInscriptos() {
-		//Collections.sort();
 		System.out.println("Lista de insciptos por orden alfabetico: ");
 		inscriptos.sort(new CompararAlfabeticamente());
 		System.out.println(inscriptos.toString());
