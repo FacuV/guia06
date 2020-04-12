@@ -45,7 +45,6 @@ public class App {
 		for(int i=0;i < 4;i++){
 			for(Alumno alumno:alumnos){
 				cursos[i+4].inscribir(alumno);
-
 			}
 		}
 	}

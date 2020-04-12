@@ -5,6 +5,10 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 import died.guia06.util.Registro;
+import excepciones.ExceptionAlumnoYaEstaEnCurso;
+import excepciones.ExceptionCursosPorCicloLectivoCompleto;
+import excepciones.ExceptionNoPoseeCreditos;
+import excepciones.ExceptionSinCupo;
 
 import javax.imageio.IIOException;
 
@@ -82,6 +86,18 @@ public class Curso {
 			ex.printStackTrace();
 		}
 		return true;
+	}
+	public void inscribirAlumno(Alumno a) throws Exception {
+		if(!inscriptos.contains(a)){
+			if(a.creditosObtenidos() >= creditosRequeridos) {
+				if(inscriptos.size()<cupo) {
+					if(a.cantCursandoEnCicloLectivo(cicloLectivo) < 3) {
+						inscriptos.add(a);
+						a.inscripcionAceptada(this);
+					}else{throw new ExceptionCursosPorCicloLectivoCompleto();}
+				}else{throw new ExceptionSinCupo();}
+			}else{throw new ExceptionNoPoseeCreditos();}
+		}else{throw new ExceptionAlumnoYaEstaEnCurso();}
 	}
 	/**
 	 * imprime los inscriptos en orden alfabetico
