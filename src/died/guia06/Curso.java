@@ -1,8 +1,9 @@
 package died.guia06;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.lang.reflect.Array;
+import java.util.*;
+
 import died.guia06.util.Registro;
 
 import javax.imageio.IIOException;
@@ -46,6 +47,8 @@ public class Curso {
 
 	public String getNombre() {return nombre;}
 
+	public Integer getCicloLectivo() {return cicloLectivo;}
+
 	/**
 	 * Este método, verifica si el alumno se puede inscribir y si es así lo agrega al curso,
 	 * agrega el curso a la lista de cursos en los que está inscripto el alumno y retorna verdadero.
@@ -60,18 +63,34 @@ public class Curso {
 	 * @return
 	 */
 	public Boolean inscribir(Alumno a) {
+		if(!inscriptos.contains(a) && a.creditosObtenidos() == creditosRequeridos && inscriptos.size()<cupo && a.cantCursandoEnCicloLectivo(cicloLectivo) < 3){
+			inscriptos.add(a);
+			a.inscripcionAceptada(this);
+		}else{return false;}
 
 		try {log.registrar(this, "inscribir ", a.toString());
 		}catch(IOException ex){
 			System.err.println("An IOException was caught: " + ex.getMessage());
 			ex.printStackTrace();
 		}
-		return false;
+		return true;
 	}
 	/**
 	 * imprime los inscriptos en orden alfabetico
 	 */
 	public void imprimirInscriptos() {
+		//Collections.sort();
+		System.out.println("Lista de insciptos por orden alfabetico: ");
+		inscriptos.sort(new CompararAlfabeticamente());
+		System.out.println(inscriptos.toString());
+
+		System.out.println("Lista de insciptos por numero de Libreta: ");
+		inscriptos.sort(new CompararPorNumLibreta());
+		System.out.println(inscriptos.toString());
+
+		System.out.println("Lista de insciptos por Creditos Obtenidos: ");
+		inscriptos.sort(new CompararPorCreditos());
+		System.out.println(inscriptos.toString());
 
 		try{log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
 		}catch(IOException ex){

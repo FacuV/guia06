@@ -92,5 +92,15 @@ public class Alumno implements Comparable<Alumno> {
 		return this.nombre.compareTo(alumno.nombre);
 	}
 
+	public int cantCursando(){return cursando.size();}
+	public int cantCursandoEnCicloLectivo(int cicloLectivo){
+		int cantidad=0;
+		for(Curso curso: cursando){
+			if(curso.getCicloLectivo() == cicloLectivo){
+				cantidad++;
+			}
+		}
+		return cantidad;
+	}
 
 }
