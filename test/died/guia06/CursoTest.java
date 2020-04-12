@@ -11,5 +11,10 @@ class CursoTest {
         boolean respuesta = curso1.inscribir(alumno1);
         assertTrue(respuesta && curso1.getInscriptos().contains(alumno1) && alumno1.getCursando().contains(curso1));
     }
+    @Test
+    void testinscribirAlumno() throws Exception {
+        curso1.inscribirAlumno(alumno1);
+        assertTrue(curso1.getInscriptos().contains(alumno1) && alumno1.getCursando().contains(curso1));
+    }
 
 }
