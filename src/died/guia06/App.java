@@ -70,13 +70,10 @@ public class App {
 				}catch(ExceptionAlumnoYaEstaEnCurso e){
 					e.printStackTrace();
 				}catch(ExceptionNoPoseeCreditos e){
-
 					e.printStackTrace();
 				}catch(ExceptionSinCupo e){
-
 					e.printStackTrace();
 				}catch(ExceptionCursosPorCicloLectivoCompleto e){
-
 					e.printStackTrace();
 				} catch (Exception e) {
 					e.printStackTrace();
